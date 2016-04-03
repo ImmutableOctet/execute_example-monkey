@@ -3,6 +3,12 @@ Strict
 Public
 
 ' Preprocessor related:
+
+' If enabled, this will use the system-defined first
+' application-argument to try to restart this application.
+'#EXECUTE_EXAMPLE_USE_FIRST_ARG = True
+
+' This is used to toggle use of the 'os' module.
 '#EXECUTE_EXAMPLE_OS = True
 
 ' Imports:
@@ -40,7 +46,11 @@ Function Main:Int()
 		
 		Print("Starting this application again:")
 		
-		Execute("main_" + HostOS() + " -test")
+		#If Not EXECUTE_EXAMPLE_USE_FIRST_ARG
+			Execute("main_" + HostOS() + " -test")
+		#Else
+			Execute(Arguments[0] + " -test")
+		#End
 		
 		Print("Original application finished.")
 	Else
