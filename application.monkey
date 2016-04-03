@@ -36,7 +36,9 @@ Function Main:Int()
 	' By default, Monkey doesn't pass anything to the application, so we
 	' can use this to check if we're running for the first time:
 	If (Arguments.Length <= 1) Then
-		Print("Starting this application again.")
+		Print("Application started for the first time.")
+		
+		Print("Starting this application again:")
 		
 		Execute("main_" + HostOS() + " -test")
 		
